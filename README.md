@@ -63,3 +63,16 @@ Please see the [MANUAL.md](https://github.com/ngs-fzb/MTBseq_source/blob/master/
 
 A phased modernization and migration outline is available in `docs/modernization_migration_plan.md`.
 A weighted comparison template for MTBseq/Mykrobe/TBProfiler/candidate pipelines is available in `templates/tool_comparison_scorecard.md`.
+
+## Modernization Starter Assets
+
+- Wrapper with structured logs + run manifest: `scripts/run_mtbseq_with_manifest.py`
+- Draft JSON report schema (v0.1): `schemas/report.schema.json`
+
+Example wrapper usage:
+```bash
+python scripts/run_mtbseq_with_manifest.py \
+  --log-dir modern_logs \
+  --manifest modern_logs/run.json \
+  -- ./MTBseq --step TBstats
+```

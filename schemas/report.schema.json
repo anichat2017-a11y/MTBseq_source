@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mtbseq.example/schemas/report.schema.json",
+  "title": "MTBseq Modern Report v0.1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run",
+    "sample",
+    "qc",
+    "resistance_predictions",
+    "lineage",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "run": {
+      "type": "object",
+      "required": ["run_id", "pipeline_version", "command", "started_at", "finished_at"],
+      "properties": {
+        "run_id": {"type": "string"},
+        "pipeline_version": {"type": "string"},
+        "command": {"type": "string"},
+        "started_at": {"type": "string", "format": "date-time"},
+        "finished_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "sample": {
+      "type": "object",
+      "required": ["sample_id", "library_id", "reference"],
+      "properties": {
+        "sample_id": {"type": "string"},
+        "library_id": {"type": "string"},
+        "reference": {"type": "string"}
+      }
+    },
+    "qc": {
+      "type": "object",
+      "properties": {
+        "mapped_reads": {"type": "integer", "minimum": 0},
+        "genome_coverage_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "mean_depth": {"type": "number", "minimum": 0}
+      }
+    },
+    "resistance_predictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["drug", "prediction"],
+        "properties": {
+          "drug": {"type": "string"},
+          "prediction": {"type": "string", "enum": ["resistant", "susceptible", "unknown"]},
+          "evidence": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "required": ["call"],
+      "properties": {
+        "call": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["vcf", "consensus_fasta"],
+      "properties": {
+        "vcf": {"type": "string"},
+        "consensus_fasta": {"type": "string"},
+        "phylo_fasta": {"type": "string"},
+        "logs_jsonl": {"type": "string"}
+      }
+    }
+  }
+}

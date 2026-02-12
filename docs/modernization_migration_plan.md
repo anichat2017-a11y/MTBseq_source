@@ -110,3 +110,17 @@ This document defines a safe, incremental recoding path from legacy MTBseq to a 
 - Runtime improvement: >= 1.5x median, or disk usage reduction >= 30%.
 
 If scientific concordance gates fail, performance gains do not qualify the release.
+
+
+## Implemented bootstrap assets
+
+This repository now includes early Phase 1 scaffolding:
+
+- `scripts/run_mtbseq_with_manifest.py`
+  - wraps MTBseq execution
+  - emits plain log and JSONL event log
+  - writes a run manifest (`run.json`) including command, timing, exit code, and tool version probes
+- `schemas/report.schema.json`
+  - defines report contract v0.1 for downstream integrations
+
+These assets are intentionally non-invasive and can be used without modifying core MTBseq modules.
