@@ -58,3 +58,8 @@ Please see the [MANUAL.md](https://github.com/ngs-fzb/MTBseq_source/blob/master/
 * picard              (v2.17.0)
 * samtools            (v1.6)
 ```
+
+## Modernization Planning
+
+A phased modernization and migration outline is available in `docs/modernization_migration_plan.md`.
+A weighted comparison template for MTBseq/Mykrobe/TBProfiler/candidate pipelines is available in `templates/tool_comparison_scorecard.md`.
